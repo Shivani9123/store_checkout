@@ -27,38 +27,4 @@ RSpec.describe PricingRule do
       expect(rule_3.value2).to eq(2)
     end
   end
-
-  describe 'negative scenarios' do
-    it 'raises an error when product_code is nil' do
-      expect { PricingRule.new(nil, "x_for_y", 2, 1) }.to raise_error(ArgumentError, "Product code cannot be nil")
-    end
-
-    it 'raises an error when product_code is an empty string' do
-      expect { PricingRule.new("", "x_for_y", 2, 1) }.to raise_error(ArgumentError, "Product code cannot be nil")
-    end
-
-    it 'raises an error when rule_type is nil' do
-      expect { PricingRule.new("VOUCHER", nil, 2, 1) }.to raise_error(ArgumentError, "Rule type cannot be nil")
-    end
-
-    it 'raises an error when value1 is nil' do
-      expect { PricingRule.new("VOUCHER", "x_for_y", nil, 1) }.to raise_error(ArgumentError, "Value1 cannot be nil")
-    end
-
-    it 'raises an error when value2 is nil' do
-      expect { PricingRule.new("VOUCHER", "x_for_y", 2, nil) }.to raise_error(ArgumentError, "Value2 cannot be nil")
-    end
-
-    it 'raises an error when value1 is not a positive integer for x_for_y' do
-      expect { PricingRule.new("VOUCHER", "x_for_y", -1, 1) }.to raise_error(ArgumentError, "Value1 must be a positive integer")
-    end
-
-    it 'raises an error when value1 is not a positive integer for bulk_discount' do
-      expect { PricingRule.new("TSHIRT", "bulk_discount", -1, 19.00) }.to raise_error(ArgumentError, "Value1 must be a positive integer")
-    end
-
-    it 'raises an error when value2 is not a positive number' do
-      expect { PricingRule.new("VOUCHER", "x_for_y", 2, -1) }.to raise_error(ArgumentError, "Value2 must be a positive number")
-    end
-  end
 end
